@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>公立千歳科学技術大学シャトルバス時刻表</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- JavaScript -->
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  
+  <div id="loading">
+    <div class="spinner"></div>
+  </div>
+  
+  <header class="page-header">
+    <h1>公立千歳科学技術大学</h1>
+    <h2>シャトルバス時刻表</h2>
+  </header>
+
+  <div class="backpanel">
+    <div class="content-area">
+      <div class="timetable-search-area">
+        <h3 id="current-time">現在時刻：年月日 曜日 HH:MM</h3>
+        <button id="outbound-button">往路</button>
+        <button id="inbound-button">復路</button>
+        <p>※土・日・授業のない祝日および大学閉鎖期間は運行しません</p>
+        <p>最新の情報は<a href="https://www.chitose.ac.jp/info/access">大学HP</a>をご確認ください</p>
+        <p>現在時刻から最も近い始発停留所発車前のダイヤをハイライト表示します</p>
+      </div>
+      <div class="cist-bus-timetable-area">
+        <!-- 往路の時刻表 -->
+        <div id="outbound-timetable" class="timetable">
+          <table id="time-row-outbound">
+            <tr>
+              <th>千歳駅発</th>
+              <th>南千歳駅発</th>
+              <th>研究実験棟発</th>
+              <th>本部棟着</th>
+            </tr>
+          </table>
+        </div>
+
+        <!-- 復路の時刻表 -->
+        <div id="inbound-timetable" class="timetable">
+          <table id="time-row-inbound">
+            <tr>
+              <th>本部棟発</th>
+              <th>研究実験棟発</th>
+              <th>南千歳駅発</th>
+              <th>千歳駅着</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2023 公立千歳科学技術大学バス時刻表</p>
+  </footer>
+</body>
+</html>
