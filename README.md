@@ -10,7 +10,7 @@
 - ロード画面を使用してコンテンツの読み込みを管理
 
 ## デモ（YouTube）
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hdkzigIL9_8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![cist-bus-timetable-searcherデモ動画](https://img.youtube.com/vi/hdkzigIL9_8/0.jpg)](https://www.youtube.com/watch?v=hdkzigIL9_8)
 
 ## 使用方法
 
@@ -44,4 +44,4 @@ Open index.html
 
 ## ライセンス
 
-このプロジェクトはMITライセンスのもとで公開されています。詳細については[LICENSE](LICENSE)ファイルをご覧ください。
+このプロジェクトはMITライセンスのもとで公開されています。
