@@ -22,14 +22,12 @@ body {
   top: 0;
   left: 0;
   z-index: 9999; /* 他の要素よりも手前に表示する */
-  opacity: 0.9; /* 最初は完全に不透明にする */
-  /* transition: opacity 3s ease; フェードアウトのアニメーションを追加 */
+  opacity: 1; /* 最初は完全に不透明にする */
 }
 
 .loaded {
   opacity: 0; /* 読み込み完了後に徐々に透明にする */
   pointer-events: none; /* 読み込み中はコンテンツにアクセスさせない */
-  /* transition: opacity 3s ease; */
 }
 
 .spinner {

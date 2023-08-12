@@ -1,5 +1,4 @@
 let cistBusTimeTableJson = "";
-let cistBusTimeTable = [];
 let inbound = [];
 let outbound = [];
 let nextDepartureOutbound;
@@ -8,25 +7,22 @@ const now = new Date();
 const currentTime = now.toTimeString().slice(0, 5);
 
 window.addEventListener('load', async function () {
-  try {
+  try {    
     updateCurrentTime();
     const json = await loadCistBusJson();
     cistBusTimeTableJson = JSON.parse(json);
     inbound = cistBusTimeTableJson.sheet.timetable.inbound;
     outbound = cistBusTimeTableJson.sheet.timetable.outbound;
 
-    // ロード画面を表示
-    document.getElementById("loading").style.display = "block";
-
-    // highlightNextDeparture関数の処理を完了するまで待つ
-    await highlightNextDeparture("time-row-outbound", currentTime);
-
     // 往路のテーブルを表示
     outboundTableCreate();
     setActiveButton("outbound-button");
 
-    // ロード画面を非表示
-    document.getElementById("loading").style.display = "none";
+    // highlightNextDeparture関数の処理を完了するまで待つ
+    highlightNextDeparture("time-row-outbound", currentTime);
+
+    // ロード画面をフェードアウト
+    fadeOutLoadingScreen();
 
   } catch (error) {
     console.error(error);
@@ -148,7 +144,20 @@ async function highlightNextDeparture(tableId, currentTime) {
       row.classList.add("highlight");
       break;
     }
+    else {
+      row.classList.remove("highlight");
+    }
   }
+}
+
+function fadeOutLoadingScreen() {
+  const loadingElement = document.getElementById("loading");
+  loadingElement.style.transition = "opacity 1s ease";
+  loadingElement.style.opacity = 0;
+
+  loadingElement.addEventListener("transitionend", () => {
+    loadingElement.style.display = "none";
+  });
 }
 
 async function loadCistBusJson() {
