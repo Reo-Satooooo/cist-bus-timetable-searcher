@@ -4,28 +4,50 @@ let outbound = [];
 let nextDepartureOutbound;
 let nextDepartureInbound;
 const now = new Date();
-const currentTime = now.toTimeString().slice(0, 5);
+// テスト時: 実際の現在時刻に任意の分を足して使用
+const addTime = 0;
+now.setMinutes(now.getMinutes() + addTime);
+
+let firstLoadDate = now.getDate();
+console.log(firstLoadDate);
+let currentTime = now.toTimeString().slice(0, 5);
+
 
 window.addEventListener('load', async function () {
   try {    
-    updateCurrentTime();
-    const json = await loadCistBusJson();
-    cistBusTimeTableJson = JSON.parse(json);
-    inbound = cistBusTimeTableJson.sheet.timetable.inbound;
-    outbound = cistBusTimeTableJson.sheet.timetable.outbound;
+      updateCurrentTime();
+      const json = await loadCistBusJson();
+      cistBusTimeTableJson = JSON.parse(json);
+      inbound = cistBusTimeTableJson.sheet.timetable.inbound;
+      outbound = cistBusTimeTableJson.sheet.timetable.outbound;
 
-    // 往路のテーブルを表示
-    outboundTableCreate();
-    setActiveButton("outbound-button");
+      // 往路のテーブルを表示
+      outboundTableCreate();
+      setActiveButton("outbound-button");
 
-    // highlightNextDeparture関数の処理を完了するまで待つ
-    highlightNextDeparture("time-row-outbound", currentTime);
+      // highlightNextDeparture関数の処理を完了するまで待つ
+      currentTime = getCurrentTimeString();
+      highlightNextDeparture("time-row-outbound", currentTime);
 
-    // ロード画面をフェードアウト
-    fadeOutLoadingScreen();
+      // ロード画面をフェードアウト
+      fadeOutLoadingScreen();
+
+      // 1秒ごとに現在時刻を更新し、次のバスの出発時刻をハイライトする
+      // 毎秒の更新が不要の場合は、コメントアウトする
+      setInterval(() => {
+          const reloadedCurrent = getCurrentTimeString();
+          let currentDate = updateCurrentTime();
+          if (firstLoadDate !== currentDate.getDate()) {
+            window.location.reload();
+            firstLoadDate = now.getDate();
+            console.log(firstLoadDate)
+          }
+          highlightNextDeparture("time-row-outbound", reloadedCurrent);
+          highlightNextDeparture("time-row-inbound", reloadedCurrent);
+      }, 1 * 1000);
 
   } catch (error) {
-    console.error(error);
+      console.error(error);
   }
 });
 
@@ -45,12 +67,26 @@ document.getElementById("inbound-button").addEventListener("click", () => {
   highlightNextDeparture("time-row-inbound", currentTime);
 });
 
+// 現在時刻の表示を更新する
 function updateCurrentTime() {
   const currentTimeElement = document.getElementById("current-time");
   const now = new Date();
+  // テスト時: 実際の現在時刻に任意の分を足して使用
+  now.setMinutes(now.getMinutes() + addTime);
+
   const options = { year: "numeric", month: "long", day: "numeric", weekday: "long", hour: "2-digit", minute: "2-digit" };
   const formattedDate = now.toLocaleString("ja-JP", options);
   currentTimeElement.textContent = "現在の時刻：" + formattedDate;
+  return now;
+}
+
+function getCurrentTimeString() {
+  const now = new Date();
+  // テスト時: 実際の現在時刻に任意の分を足して使用
+  now.setMinutes(now.getMinutes() + addTime);
+
+  console.log(now.toTimeString().slice(0, 5));
+  return now.toTimeString().slice(0, 5);
 }
 
 function setActiveButton(buttonId) {
@@ -142,6 +178,8 @@ async function highlightNextDeparture(tableId, currentTime) {
 
     if (departureTime) {
       row.classList.add("highlight");
+      // addした要素が画面内に表示されるようにスクロールする
+      // row.scrollIntoView({ behavior: "smooth", block: "center" ,inline: "center"});
       break;
     }
     else {
@@ -162,7 +200,7 @@ function fadeOutLoadingScreen() {
 
 async function loadCistBusJson() {
   try {
-    const response = await fetch("http://0.0.0.0:8080/json");
+    const response = await fetch("http://127.0.0.1:8000/json");
     if (!response.ok) {
       throw new Error("Failed to load JSON");
     }

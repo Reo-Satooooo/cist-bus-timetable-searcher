@@ -1,4 +1,5 @@
 /* Reset some default margins and paddings */
+
 body, h1, h2, h3, p, ul, li {
   margin: 0;
   padding: 0;
@@ -113,6 +114,7 @@ a:hover {
 
 .timetable {
   display: none;
+  font-size: 26px;
 }
 
 #outbound-timetable {
@@ -144,10 +146,6 @@ table td {
   text-align: center;
   padding: 10px;
   border-bottom: 1px solid #ddd;
-}
-
-table td:first-child {
-  font-weight: bold;
 }
 
 /* Button styles */
@@ -195,6 +193,10 @@ footer {
 @media screen and (max-width: 768px) {
   .backpanel {
     padding: 10px;
+  }
+
+  .timetable{
+    font-size: 12px;
   }
 
   .timetable-search-area p {

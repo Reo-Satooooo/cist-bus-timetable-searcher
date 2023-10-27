@@ -26,15 +26,15 @@
         <h3 id="current-time">現在時刻：年月日 曜日 HH:MM</h3>
         <button id="outbound-button">往路</button>
         <button id="inbound-button">復路</button>
-        <p>※土・日・授業のない祝日および大学閉鎖期間は運行しません</p>
-        <p>最新の情報は<a href="https://www.chitose.ac.jp/info/access">大学HP</a>をご確認ください</p>
+        <p>※土・日・授業のない祝日および大学閉鎖期間は運行しません</p>    
+        <p>最新の情報は<a href="https://www.chitose.ac.jp/info/access" target="_blank" rel="noopener noreferrer">大学HP</a>をご確認ください</p>
         <p>現在時刻から最も近い始発停留所発車前のダイヤをハイライト表示します</p>
       </div>
       <div class="cist-bus-timetable-area">
         <!-- 往路の時刻表 -->
         <div id="outbound-timetable" class="timetable">
           <table id="time-row-outbound">
-            <tr>
+            <tr class="stop-list">
               <th>千歳駅発</th>
               <th>南千歳駅発</th>
               <th>研究実験棟発</th>
@@ -46,7 +46,7 @@
         <!-- 復路の時刻表 -->
         <div id="inbound-timetable" class="timetable">
           <table id="time-row-inbound">
-            <tr>
+            <tr class="stop-list">
               <th>本部棟発</th>
               <th>研究実験棟発</th>
               <th>南千歳駅発</th>
