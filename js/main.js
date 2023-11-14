@@ -21,13 +21,15 @@ window.addEventListener('load', async function () {
       inbound = cistBusTimeTableJson.sheet.timetable.inbound;
       outbound = cistBusTimeTableJson.sheet.timetable.outbound;
 
-      // 往路のテーブルを表示
+      // 復路のテーブルを表示
+      document.getElementById("outbound-timetable").style.display = "none";
+      document.getElementById("inbound-timetable").style.display = "block";
       outboundTableCreate();
-      setActiveButton("outbound-button");
+      setActiveButton("inbound-button");
 
       // highlightNextDeparture関数の処理を完了するまで待つ
       currentTime = getCurrentTimeString();
-      highlightNextDeparture("time-row-outbound", currentTime);
+      highlightNextDeparture("time-row-inbound", currentTime);
 
       // ロード画面をフェードアウト
       fadeOutLoadingScreen();
@@ -179,7 +181,7 @@ async function highlightNextDeparture(tableId, currentTime) {
     if (departureTime) {
       row.classList.add("highlight");
       // addした要素が画面内に表示されるようにスクロールする
-      // row.scrollIntoView({ behavior: "smooth", block: "center" ,inline: "center"});
+      row.scrollIntoView({ behavior: "smooth", block: "center" ,inline: "center"});
       break;
     }
     else {
