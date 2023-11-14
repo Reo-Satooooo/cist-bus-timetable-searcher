@@ -25,6 +25,7 @@ window.addEventListener('load', async function () {
       document.getElementById("outbound-timetable").style.display = "none";
       document.getElementById("inbound-timetable").style.display = "block";
       outboundTableCreate();
+      inboundTableCreate();
       setActiveButton("inbound-button");
 
       // highlightNextDeparture関数の処理を完了するまで待つ
