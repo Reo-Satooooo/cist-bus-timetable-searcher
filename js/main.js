@@ -203,7 +203,7 @@ function fadeOutLoadingScreen() {
 
 async function loadCistBusJson() {
   try {
-    const response = await fetch("http://ec2-13-230-179-43.ap-northeast-1.compute.amazonaws.com/json");
+    const response = await fetch("https://cist-bus-api.com/json");
     if (!response.ok) {
       throw new Error("Failed to load JSON");
     }
