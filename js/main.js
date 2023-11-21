@@ -182,7 +182,7 @@ async function highlightNextDeparture(tableId, currentTime) {
     if (departureTime) {
       row.classList.add("highlight");
       // addした要素が画面内に表示されるようにスクロールする
-      row.scrollIntoView({ behavior: "smooth", block: "center" ,inline: "center"});
+      // row.scrollIntoView({ behavior: "smooth", block: "center" ,inline: "center"});
       break;
     }
     else {
