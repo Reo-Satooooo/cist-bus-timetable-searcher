@@ -22,11 +22,11 @@ window.addEventListener('load', async function () {
       outbound = cistBusTimeTableJson.sheet.timetable.outbound;
 
       // 復路のテーブルを表示
-      document.getElementById("outbound-timetable").style.display = "none";
-      document.getElementById("inbound-timetable").style.display = "block";
+      // document.getElementById("outbound-timetable").style.display = "none";
+      // document.getElementById("inbound-timetable").style.display = "block";
       outboundTableCreate();
       inboundTableCreate();
-      setActiveButton("inbound-button");
+      setActiveButton("outbound-button");
 
       // highlightNextDeparture関数の処理を完了するまで待つ
       currentTime = getCurrentTimeString();
