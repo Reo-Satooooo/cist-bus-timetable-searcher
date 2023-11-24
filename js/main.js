@@ -21,12 +21,12 @@ window.addEventListener('load', async function () {
       inbound = cistBusTimeTableJson.sheet.timetable.inbound;
       outbound = cistBusTimeTableJson.sheet.timetable.outbound;
 
-      // 復路のテーブルを表示
-      // document.getElementById("outbound-timetable").style.display = "none";
-      // document.getElementById("inbound-timetable").style.display = "block";
+      // デフォルトで復路のテーブルを表示
+      document.getElementById("outbound-timetable").style.display = "none";
+      document.getElementById("inbound-timetable").style.display = "block";
       outboundTableCreate();
       inboundTableCreate();
-      setActiveButton("outbound-button");
+      setActiveButton("inbound-button");
 
       // highlightNextDeparture関数の処理を完了するまで待つ
       currentTime = getCurrentTimeString();
@@ -68,6 +68,16 @@ document.getElementById("inbound-button").addEventListener("click", () => {
   inboundTableCreate();
   setActiveButton("inbound-button");
   highlightNextDeparture("time-row-inbound", currentTime);
+});
+
+// ハイライトを追従させるかどうかを切り替える
+document.getElementById("switch-highlight").addEventListener("change", () => {
+  const followCheckbox = document.getElementById("switch-highlight");
+  if (followCheckbox.checked){
+      const reloadedCurrent = getCurrentTimeString();
+      highlightNextDeparture("time-row-outbound", reloadedCurrent);
+      highlightNextDeparture("time-row-inbound", reloadedCurrent);
+  }
 });
 
 // 現在時刻の表示を更新する
@@ -181,8 +191,11 @@ async function highlightNextDeparture(tableId, currentTime) {
 
     if (departureTime) {
       row.classList.add("highlight");
-      // addした要素が画面内に表示されるようにスクロールする
-      // row.scrollIntoView({ behavior: "smooth", block: "center" ,inline: "center"});
+      const followCheckbox = document.getElementById("switch-highlight");
+      if (followCheckbox.checked) {
+        // addした要素が画面内に表示されるようにスクロールする
+        row.scrollIntoView({ behavior: "smooth", block: "center" ,inline: "center"});
+      }
       break;
     }
     else {

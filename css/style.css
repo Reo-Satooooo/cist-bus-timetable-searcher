@@ -71,6 +71,34 @@ body {
   text-align: center;
 }
 
+.switch {
+  background-color: #fff;
+  border: 2px solid #009688;
+  border-radius: 10px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 6px 20px;
+  display: flex;
+}
+
+#switch-highlight {
+  accent-color: #009688;
+  height: 30px;
+  top: 50%;
+  width: 30px;
+}
+
+#checkbox-text{
+  margin: 3px 3px 3px 3px;
+  font-size: 16px;
+  padding: 4px;
+  /* テキストを太く */
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  color: #009688;
+}
+
 /* Bus timetable search area */
 .timetable-search-area {
   margin-bottom: 20px;
