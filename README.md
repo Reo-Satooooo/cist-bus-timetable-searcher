@@ -40,8 +40,3 @@ cd cist-bus-timetable
 ```
 Open index.html
 ```
-
-
-## ライセンス
-
-このプロジェクトはMITライセンスのもとで公開されています。
